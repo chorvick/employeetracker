@@ -18,7 +18,7 @@ const connection = mysql.createConnection({
 
     // Your password
     password: 'puss',
-    database: 'employeeDB',
+    database: 'companyDB',
 });
 
 connection.connect((err) => {
@@ -38,7 +38,7 @@ const init = () => {
                 'Add an employee',
                 'View existing departments',
                 'View existing roles',
-                'View existing roles',
+                'View existing employees',
                 'Update an employee role',
                 'Remome an employee',
                 'Exit',
@@ -46,23 +46,40 @@ const init = () => {
         })
         .then((answer) => {
             switch (answer.action) {
-                case 'Find songs by artist':
-                    artistSearch();
+                case 'Add a department':
+                    addDepartment();
                     break;
 
-                case 'Find all artists who appear more than once':
-                    multiSearch();
+                case 'Add a role':
+                    addRole();
                     break;
 
-                case 'Find data within a specific range':
-                    rangeSearch();
+                case 'Add an employee':
+                    addEmployee();
                     break;
 
-                case 'Search for a specific song':
-                    songSearch();
+                case 'View existing departments':
+                    viewDepartment();
+                    break;
+
+                case 'View existing roles':
+                    viewRole();
+                    break;
+
+                case 'View existing employees':
+                    viewEmployee();
+                    break;
+
+                case 'Update an employee role':
+                    updateEmployee();
+                    break;
+
+                case 'Remome an employee':
+                    removeEmployee();
                     break;
 
                 case 'Exit':
+                    console.log("Thank you for using the Employee Tracker  !!")
                     connection.end();
                     break;
 
@@ -71,4 +88,71 @@ const init = () => {
                     break;
             }
         });
+};
+
+/// add function to add a department
+
+function addDepartment() {
+
+};
+
+
+
+
+/// add function to add a role
+
+function addRole() {
+
+};
+
+
+
+/// add function to add an employee
+
+function addEmployee() {
+
+};
+
+
+
+
+/// add function to view departments
+
+function viewDepartment() {
+
+};
+
+
+
+
+/// add function to view roles
+
+function viewRole() {
+
+};
+
+
+
+
+/// add function to view employees
+
+function viewEmployee() {
+
+};
+
+
+
+
+/// add function to  update and employee's role
+
+function updateEmployee() {
+
+};
+
+
+
+/// add function to delete/remove an employee
+
+function removeEmployee() {
+
 };
