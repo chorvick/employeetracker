@@ -93,6 +93,18 @@ const init = () => {
 /// add function to add a department
 
 function addDepartment() {
+    inquirer.prompt({
+        type: "input",
+        name: "addDept",
+        message: "Department Name: "
+    })
+        .then((res) => {
+            connection.query("INSERT INTO department SET ?", {
+                dept_name: res.addDept
+            });
+            console.log("Department has been added successfully");
+            seeAllDept();
+        });
 
 };
 
@@ -156,3 +168,15 @@ function updateEmployee() {
 function removeEmployee() {
 
 };
+
+
+
+//// function to display all departments
+
+function seeAllDept() {
+    connection.query("SELECT * FROM department ORDER BY dept_name", (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        init();
+    });
+}
