@@ -84,6 +84,7 @@ const init = () => {
                     break;
 
                 default:
+                    console.log(`Invalid action: ${answer.action}`);
                     break;
             }
         });

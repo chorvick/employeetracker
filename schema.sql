@@ -2,25 +2,25 @@
 -- a table for departmet, role and, employee --
 DROP DATABASE IF EXISTS companyDB;
 CREATE DATABASE companyDB;
----drop and/or delete if it exists if not create a new database called company
+
 USE companyDB;
------use 3 tables first is the department ----- 
+
 CREATE TABLE department(
-  dept_id INT NOT NULL AUTO_INCREMENT,
+  dept_id INT NOT NULL AUTO_INCREMENT PRIMARY key,
   dept_name VARCHAR(30)
 );
 -----  second table is the role 
 CREATE TABLE role(
-  role_id INT NOT NULL AUTO_INCREMENT,
+  role_id INT NOT NULL AUTO_INCREMENT PRIMARY key,
   title VARCHAR(30),
   salary DECIMAL (6,0),
-  department_id INT NOT NULL,
-  );
----- third table will be employee 
+  department_id INT NOT NULL
+);
+
 CREATE TABLE employee(
-  employee_id INT NOT NULL AUTO_INCREMENT,
+  employee_id INT NOT NULL AUTO_INCREMENT PRIMARY key,
   first_name VARCHAR(30),
   last_name VARCHAR(30),
   role_id INT NOT NULL,
-  manager_id INT,
-  );
+  manager_id INT
+);
