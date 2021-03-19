@@ -114,6 +114,35 @@ function addDepartment() {
 /// add function to add a role
 
 function addRole() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "addRole",
+            message: "Please enter the role ",
+        },
+        {
+            type: "input",
+            name: "addSalary",
+            message: "Please enter salary ",
+        },
+        {
+            type: "input",
+            name: "addDeptid",
+            message: "Please enter the department ID number ",
+        }
+    ])
+        .then((res) => {
+            connection.query("INSERT INTO role SET ?", {
+                role: res.addRole,
+                salary: res.addSalary,
+                department_id: res.addDeptid
+
+
+
+            });
+            console.log("Role was added successfully ");
+            seeRoles();
+        });
 
 };
 
@@ -180,3 +209,14 @@ function seeAllDept() {
         init();
     });
 }
+
+function seeRoles() {
+    connection.query("SELECT * FROM role ORDER BY role", (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        init();
+
+    });
+}
+
+///lets look up ways to color tables possibly using chalk or other node package
