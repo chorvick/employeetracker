@@ -74,7 +74,7 @@ const init = () => {
                     updateEmployee();
                     break;
 
-                case 'Remome an employee':
+                case 'Remove an employee':
                     removeEmployee();
                     break;
 
