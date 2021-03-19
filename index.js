@@ -59,11 +59,11 @@ const init = () => {
                     break;
 
                 case 'View existing departments':
-                    viewDepartment();
+                    seeAllDept();
                     break;
 
                 case 'View existing roles':
-                    viewRole();
+                    seeRoles();
                     break;
 
                 case 'View existing employees':
@@ -151,35 +151,54 @@ function addRole() {
 /// add function to add an employee
 
 function addEmployee() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "addFirstname",
+            message: "Please type the employee's first name ",
+        },
+        {
+            type: "input",
+            name: "addLastname",
+            message: "Please type the employee's last name ",
+        },
+        {
+            type: "input",
+            name: "addRoleid",
+            message: "Please enter the employee's role id number ",
+        },
+        {
+            type: "input",
+            name: "addManagerid",
+            message: "Please enter the managers id for this employee ",
+        }
+    ])
+
+        .then((res) => {
+            connection.query("INSERT INTO employee SET ?", {
+                first_name: res.addFirstname,
+                last_name: res.addLastname,
+                role_id: res.addRoleid,
+                manager_id: res.addManagerid
+
+            });
+            console.log("Employee was added successfully !! ");
+            viewEmployee();
+        })
 
 };
-
-
-
-
-/// add function to view departments
-
-function viewDepartment() {
-
-};
-
-
-
-
-/// add function to view roles
-
-function viewRole() {
-
-};
-
 
 
 
 /// add function to view employees
 
 function viewEmployee() {
-
-};
+    connection.query("SELECT * FROM employee ORDER BY last_name", (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        init();
+    });
+}
 
 
 
