@@ -16,7 +16,11 @@ const connection = mysql.createConnection({
     // Your username
     user: 'root',
 
-    // Your password
+    // Your password  --- note this password is not used for anything else other than this laptops install of mysql
+    /// which will be changed soon as i plan to reinstall it so don't bother trying to steal the password
+    /// it will not work for anything else, i use unique long and complex passwords for everything online
+    /// i used an easy password for this setup since i did not want to type something complex !! 
+    /// just a word to any would be hackers out there ---- 
     password: 'puss',
     database: 'companyDB',
 });
@@ -25,7 +29,8 @@ connection.connect((err) => {
     if (err) throw err;
     init();
 });
-///init is the function that starts the application
+///init is the function that starts the application  - it is called different places normally after accepting or displaying information
+//// to the user so we can give them the start up choices again, there is an exit function which is the only way out of this application
 const init = () => {
     inquirer
         .prompt({
@@ -40,7 +45,7 @@ const init = () => {
                 'View existing roles',
                 'View existing employees',
                 'Update an employee role',
-                ///           'Remome an employee',
+                ///           'Remome an employee',              i hope to have time to add this function later and other functions
                 'Exit',
             ],
         })
@@ -253,9 +258,8 @@ function updateEmployee() {
 
 /// add function to delete/remove an employee
 
-function removeEmployee() {
+/// hopefully i will have time to add this functionality soon
 
-};
 
 
 
