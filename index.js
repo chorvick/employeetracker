@@ -40,7 +40,7 @@ const init = () => {
                 'View existing roles',
                 'View existing employees',
                 'Update an employee role',
-                'Remome an employee',
+                ///           'Remome an employee',
                 'Exit',
             ],
         })
@@ -74,9 +74,9 @@ const init = () => {
                     updateEmployee();
                     break;
 
-                case 'Remove an employee':
-                    removeEmployee();
-                    break;
+                // case 'Remove an employee':
+                //     removeEmployee();
+                //     break;
 
                 case 'Exit':
                     console.log("Thank you for using the Employee Tracker  !!")
@@ -120,6 +120,7 @@ function addRole() {
             name: "addRole",
             message: "Please enter the role ",
         },
+
         {
             type: "input",
             name: "addSalary",
@@ -190,7 +191,7 @@ function addEmployee() {
 
 
 
-/// add function to view employees
+/// add function to view / list employees
 
 function viewEmployee() {
     connection.query("SELECT * FROM employee ORDER BY last_name", (err, res) => {
@@ -206,6 +207,45 @@ function viewEmployee() {
 /// add function to  update and employee's role
 
 function updateEmployee() {
+    connection.query("SELECT employee_id, first_name, role, manager_id AS manager FROM employee JOIN role ON employee.role_id = role.role_id ORDER BY last_name", (err, res) => {
+        if (err) throw err;
+        console.table(res);
+
+        inquirer.prompt([
+            {
+                type: "input",
+                name: "idUpdate",
+                message: "Please enter the employee id number to update "
+            },
+            {
+                type: "input",
+                name: "newId",
+                message: "Please enter the updated role id for this emplouyee "
+
+
+            },
+        ]).then((res) => {
+            connection.query("UPDATE employee SET ? WHERE ?",
+                [
+                    {
+                        role_id: res.newId,
+                    },
+                    {
+                        employee_id: res.idUpdate,
+                    }
+                ],
+                (err, res) => {
+                    if (err) throw err;
+                    console.log("The employees role has been updated successfully !!! ");
+                    viewEmployee();
+
+
+                }
+
+            );
+
+        });
+    });
 
 };
 
@@ -228,6 +268,8 @@ function seeAllDept() {
         init();
     });
 }
+
+//// function to display all roles 
 
 function seeRoles() {
     connection.query("SELECT * FROM role ORDER BY role", (err, res) => {
