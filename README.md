@@ -5,6 +5,7 @@
 ## Description
 
 This is a simple command line application for managing a company's employees using node, inquirer, and MySQL.
+See video demo [HERE](https://drive.google.com/file/d/1gyqnufi0gfGDNawZs0_6dRjWmD_MPTUw/view)
 
 ## Table of Contents
 
